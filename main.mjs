@@ -9,7 +9,18 @@ app.use(express.static("static"));
 const prisma = new PrismaClient();
 
 const template = fs.readFileSync("./template.html", "utf-8");
+//let i=0;
 app.get("/", async (request, response) => {
+  /*
+  if (i==0){
+    await prisma.post.delete({
+      where: {
+        id: 1,
+      }
+    })
+    i=1
+  }
+  */
   const posts = await prisma.post.findMany();
   const html = template.replace(
     "<!-- posts -->",
